@@ -34,9 +34,16 @@ export default function User() {
     };
     console.log(user);
     axios
-      .post("https://fitness-tracker-mern.herokuapp.com/users/add/", user)
-      .then((res) => console.log(res.data));
-
+      .post("http://localhost:5000/users/add/", user, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => console.log(res.data))
+      .catch((err) => {
+        console.error("Error response:", err.response?.data || err.message);
+      });
+  
     setUsername("");
   };
 
